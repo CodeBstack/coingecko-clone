@@ -1,0 +1,60 @@
+.stats-container {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #dddddd;
+  width: 95%;
+  margin: 0 auto;
+
+  .left-part {
+    flex-basis: 65%;
+
+    .lists {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      span {
+        color: #9382f6;
+        cursor: pointer;
+      }
+
+      .rise{
+        color: #8bc53f;
+        align-items: center;
+      }
+    }
+  }
+
+  .right-part {
+    flex-basis: 20%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 10px;
+
+    h3 {
+      font-weight: 500;
+      cursor: pointer;
+    }
+    
+    .theme{
+        cursor: pointer;
+    }
+
+    .subscribe {
+      outline: none;
+      color: #8bc53f;
+      border: 1px solid #8bc53f;
+      border-radius: 4px;
+      padding: .3rem .5rem;
+      background: none;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #f1f8e9;
+      }
+    }
+  }
+}
