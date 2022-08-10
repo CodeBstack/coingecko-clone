@@ -8,6 +8,31 @@ import Candy from '../../assets/candy_notification_web-a560ca6de9e0daaeb05eb6fe3
 import './navigation.styles.scss';
 
 const Navigation = () => {
+  // const [searchField, setSearchField] =
+  //   useState('');
+  // const [monsters, setMonster] = useState([]);
+  // const [filteredMonsters, setfilteredMonsters] =
+  //   useState(monsters);
+
+  // useEffect(() => {
+  //   const newFilteredMonsters = monsters.filter(
+  //     (monster) => {
+  //       return monster.name
+  //         .toLocaleLowerCase()
+  //         .includes(searchField);
+  //     }
+  //   );
+
+  //   setfilteredMonsters(newFilteredMonsters);
+  // }, [monsters, searchField]); // this means run the useEffect whenever the monsters array changes or searchField changes.
+
+  // const onSearchChange = (event) => {
+  //   const searchFieldString =
+  //     event.target.value.toLocaleLowerCase();
+
+  //   setSearchField(searchFieldString);
+  // };
+
   return (
     <Fragment>
       <StatsHeader />
@@ -33,6 +58,7 @@ const Navigation = () => {
           <Link to="/#">Portfolio</Link>
           <Link to="/#">Login</Link>
           <Link to="/#">Sign Up</Link>
+
           <input
             placeholder="&#x1F50D; Search"
             type="search"

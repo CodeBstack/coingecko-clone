@@ -1,9 +1,9 @@
-
-
-import { BrowserRouter as Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Navigation from './routes/navigation/navigation.components';
 import Home from './routes/home/home.components';
 import CryptoCurrencies from './routes/cryptocurrencie/cryptocurrencies.component';
+
+
 import { Suspense } from 'react';
 
 const App = () => {

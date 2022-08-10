@@ -1,10 +1,43 @@
 import './coins.style.scss';
 import CoinCategories from '../coin-categories/coin-categories.components';
-// import { useQuery } from '@tanstack/react-query';
-import { GetCoins } from '../../Apis/userApis';
+import Load from '../onLoad/onLoad.component';
+import { useQuery } from '@tanstack/react-query';
+import { useState } from 'react';
+import axios from 'axios';
+// import { GetCoins } from '../../Apis/userApis';
+
+const fetchCoinData = async (page = 0) => {
+  //   const res = await fetch(
+  //       `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=${page}&sparkline=false&price_change_percentage=1h%2C24h%2C7d`
+  //     // `https://api.coingecko.com/api/v3/coins//markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=${page}&sparkline=false&price_change_percentage=1h%2C24h`
+  //     );
+
+  const { data } = await axios.get(
+    `https://api.coingecko.com/api/v3/coins//markets?vs_currency=usd&order=market_cap_desc&per_page=250&page=${page}&sparkline=false&price_change_percentage=1h%2C24h%2C7d`
+  );
+
+  return data;
+
+  //   return res.json();
+};
 
 const Coins = ({ fdvDisp }) => {
-//   GetCoins();
+  const [page, setPage] = useState(0);
+  const {
+    isLoading,
+    isError,
+    error,
+    data,
+    isFetching,
+    isPreviousData,
+  } = useQuery(
+    ['coins', page],
+    () => fetchCoinData(page),
+    {
+      keepPreviousData: true,
+    }
+  );
+//   console.log(data);
 
   return (
     <div className="coin-container">
@@ -44,7 +77,50 @@ const Coins = ({ fdvDisp }) => {
       </div>
 
       <div className="coin-lists">
-        <CoinCategories fdvDisplay={fdvDisp} />
+        {isLoading ? (
+          <div className="loader-container">
+            <Load />
+          </div>
+        ) : isError ? (
+          <div>Error: {error.message}</div>
+        ) : (
+          data.map((coin, ind) => {
+            // console.log(ind+1,coin);
+            return (
+              <CoinCategories
+                key={coin.id}
+                fdvDisplay={fdvDisp}
+                coin={coin}
+                index={ind}
+              />
+            );
+          })
+        )}
+        <span>Current Page: {page + 1}</span>
+        <button
+          onClick={() =>
+            setPage((old) => Math.max(old - 1, 0))
+          }
+          disabled={page === 0}
+        >
+          Previous Page
+        </button>{' '}
+        <button
+          onClick={() => {
+            if (!isPreviousData && data.hasMore) {
+              setPage((old) => old + 1);
+            }
+          }}
+          // Disable the Next Page button until we know a next page is available
+          disabled={
+            isPreviousData || !data?.hasMore
+          }
+        >
+          Next Page
+        </button>
+        {isFetching ? (
+          <span> Loading...</span>
+        ) : null}{' '}
       </div>
     </div>
   );

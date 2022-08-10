@@ -6,8 +6,8 @@
   align-items: center;
   border-bottom: 1px solid #dddddd;
 
-  h4{
-    font-weight: 500;
+  h4 {
+    font-weight: 400;
   }
 
   &:hover {
@@ -48,16 +48,26 @@
   .hour,
   .day,
   .week {
-    flex-basis: 4%;
+    flex-basis: 6%;
+    color: #8bc53f;
+    cursor: pointer;
   }
+
+  .fall {
+    color: red;
+    cursor: pointer;
+    flex-basis: 6%;
+  }
+
   .price,
   .volume,
-  .mktcap,.fdv,
+  .mktcap,
+  .fdv,
   .last-week {
     flex-basis: 10%;
   }
 
-  .fdv-none{
+  .fdv-none {
     display: none;
   }
 

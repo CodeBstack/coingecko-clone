@@ -28,7 +28,7 @@
     .hour,
     .day,
     .week {
-      flex-basis: 4%;
+      flex-basis: 6%;
     }
     .price,
     .volume,
@@ -43,3 +43,11 @@
     }
   }
 }
+.loader-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+
