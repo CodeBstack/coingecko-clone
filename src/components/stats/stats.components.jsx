@@ -2,6 +2,7 @@ import './stats.styles.scss';
 import { MdOutlineArrowDropDown } from 'react-icons/md';
 import { MdNightlight } from 'react-icons/md';
 import { ImArrowUp2 } from 'react-icons/im';
+import { FaEthereum } from 'react-icons/fa';
 
 const StatsHeader = () => {
   return (
@@ -28,10 +29,13 @@ const StatsHeader = () => {
           </li>
           <li>
             Dominance:{' '}
-            <span>BTC 38.9% &nbsp; ETH 18.2%</span>
+            <span>
+              BTC 38.9% &nbsp; ETH 18.2%
+            </span>
           </li>
           <li>
-            Gas: <span> 6 GWEI</span>
+            <FaEthereum /> Gas:{' '}
+            <span> 6 GWEI</span>
           </li>
         </div>
       </div>

@@ -5,28 +5,37 @@ import { ImArrowUp2 } from 'react-icons/im';
 import { BsStar } from 'react-icons/bs';
 import ToggleSwitch from '../toggleSwitch/toggleSwitch.components';
 import Coins from '../coins/coins.component';
+import { useState } from 'react';
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query';
 
 const Directory = () => {
+  const [showFDV, setShowFDV] = useState(false);
+
+  const handleChange = () => {
+    setShowFDV(!showFDV);
+  };
+
+  const queryClient = new QueryClient();
+
   return (
     <div className="directory-container">
       <div className="directory-nav">
-        <Link to="/portfolio">
+        <Link to="/#">
           {' '}
           <span className="star">
             <BsStar />
           </span>{' '}
           &nbsp; Portfolio
         </Link>
-        <Link className="isActive" to="/coins">
+        <Link className="isActive" to="/">
           Coins
         </Link>
-        <Link to="/new-cryptocurrencies">
-          New Cryptocurrencies
-        </Link>
-        <Link to="/gainerslosers">
-          Gainers &#x26; Losers
-        </Link>
-        <Link to="/categories">Categories</Link>
+        <Link to="/#">New Cryptocurrencies</Link>
+        <Link to="/#">Gainers &#x26; Losers</Link>
+        <Link to="/#">Categories</Link>
       </div>
 
       <div className="heading">
@@ -47,10 +56,7 @@ const Directory = () => {
             0.2% <ImArrowUp2 />
           </span>{' '}
           change in the last 24 hours.
-          <Link
-            className="readmore"
-            to="/readmore"
-          >
+          <Link className="readmore" to="/#">
             Read more.
           </Link>
         </p>
@@ -65,12 +71,15 @@ const Directory = () => {
               label={
                 'Show Fully Diluted Valuation'
               }
+              onHandleChange={handleChange}
             />
           </h3>
         </div>
           </div>
           
-         <Coins/>
+      <QueryClientProvider client={queryClient}>
+        <Coins fdvDisp={showFDV} />
+      </QueryClientProvider>
     </div>
   );
 };

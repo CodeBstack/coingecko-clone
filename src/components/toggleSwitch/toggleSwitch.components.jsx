@@ -1,11 +1,13 @@
 import './toggleSwitch.styles.scss';
 
-const ToggleSwitch = ({ label }) => {
+const ToggleSwitch = ({ label, onHandleChange }) => {
   return (
+    
     <div className="toggleSwitch-container">
       <div className="toggle-switch">
         <input
           type="checkbox"
+          onChange={onHandleChange}
           className="checkbox"
           name={label}
           id={label}

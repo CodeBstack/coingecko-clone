@@ -21,18 +21,18 @@ const Navigation = () => {
           <Link to="/cryptocurrencies">
             Cryptocurrencies
           </Link>
-          <Link to="/exchange">Exchange</Link>
-          <Link to="/nft">NFT</Link>
-          <Link to="/learn">Learn Crypto</Link>
-          <Link to="/products">Products</Link>
+          <Link to="/#">Exchange</Link>
+          <Link to="/#">NFT</Link>
+          <Link to="/#">Learn Crypto</Link>
+          <Link to="/#">Products</Link>
         </div>
         <div className=" right-part">
-          <Link to="/rewards">
+          <Link to="/#">
             <img src={Candy} alt="candy-box" />
           </Link>
-          <Link to="/portfolio">Portfolio</Link>
-          <Link to="/login">Login</Link>
-          <Link to="/sign-up">Sign Up</Link>
+          <Link to="/#">Portfolio</Link>
+          <Link to="/#">Login</Link>
+          <Link to="/#">Sign Up</Link>
           <input
             placeholder='&#x1F50D; Search'
             type="search"

@@ -1,10 +1,14 @@
 .coin-container {
   display: flex;
   flex-direction: column;
-  font-weight: 1200;
+
+  h3 {
+    font-weight: 500;
+  }
 
   .coins-heading {
     display: flex;
+    padding: 0.2rem 0;
     flex-direction: row;
     justify-content: space-between;
     text-align: right;
@@ -29,39 +33,13 @@
     .price,
     .volume,
     .mktcap,
+    .fdv,
     .last-week {
       flex-basis: 10%;
     }
-  }
 
-  .coin-list {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    text-align: right;
-    align-items: center;
-    border-bottom: 1px solid #dddddd;
-
-    .coin {
-      flex-basis: 30%;
-      text-align: left;
-    }
-
-    .count {
-      text-align: center;
-      flex-basis: 5%;
-    }
-
-    .hour,
-    .day,
-    .week {
-      flex-basis: 4%;
-    }
-    .price,
-    .volume,
-    .mktcap,
-    .last-week {
-      flex-basis: 10%;
+    .fdv-none {
+      display: none;
     }
   }
 }
