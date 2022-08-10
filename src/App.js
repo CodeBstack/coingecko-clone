@@ -1,21 +1,29 @@
-import { Routes, Route } from 'react-router-dom';
+
+
+import { BrowserRouter as Routes, Route } from 'react-router-dom';
 import Navigation from './routes/navigation/navigation.components';
 import Home from './routes/home/home.components';
 import CryptoCurrencies from './routes/cryptocurrencie/cryptocurrencies.component';
+import { Suspense } from 'react';
 
 const App = () => {
   return (
-    <div className="App">
-      <Routes>
-        <Route path="/" element={<Navigation />}>
-          <Route index element={<Home />} />
+    <>
+      <Suspense>
+        <Routes>
           <Route
-            path="cryptocurrencies"
-            element={<CryptoCurrencies />}
-          />
-        </Route>
-      </Routes>
-    </div>
+            path="/"
+            element={<Navigation />}
+          >
+            <Route index element={<Home />} />
+            <Route
+              path="cryptocurrencies"
+              element={<CryptoCurrencies />}
+            />
+          </Route>
+        </Routes>
+      </Suspense>
+    </>
   );
 };
 

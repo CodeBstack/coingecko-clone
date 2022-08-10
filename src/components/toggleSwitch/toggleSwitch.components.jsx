@@ -1,8 +1,10 @@
 import './toggleSwitch.styles.scss';
 
-const ToggleSwitch = ({ label, onHandleChange }) => {
+const ToggleSwitch = ({
+  label,
+  onHandleChange,
+}) => {
   return (
-    
     <div className="toggleSwitch-container">
       <div className="toggle-switch">
         <input

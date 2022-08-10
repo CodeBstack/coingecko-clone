@@ -34,7 +34,7 @@ const Navigation = () => {
           <Link to="/#">Login</Link>
           <Link to="/#">Sign Up</Link>
           <input
-            placeholder='&#x1F50D; Search'
+            placeholder="&#x1F50D; Search"
             type="search"
           />
         </div>

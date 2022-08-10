@@ -40,7 +40,11 @@ const CoinCategories = ({ fdvDisplay }) => {
       <div className="mktcap">
         <h4> $443,802,894,880</h4>
       </div>
-      <div className={fdvDisplay ? 'fdv' : 'fdv-none'}>
+      <div
+        className={
+          fdvDisplay ? 'fdv' : 'fdv-none'
+        }
+      >
         <h4>$488,493,684,000</h4>
       </div>
       <div className="last-week">

@@ -6,10 +6,6 @@ import { BsStar } from 'react-icons/bs';
 import ToggleSwitch from '../toggleSwitch/toggleSwitch.components';
 import Coins from '../coins/coins.component';
 import { useState } from 'react';
-import {
-  QueryClient,
-  QueryClientProvider,
-} from '@tanstack/react-query';
 
 const Directory = () => {
   const [showFDV, setShowFDV] = useState(false);
@@ -17,8 +13,6 @@ const Directory = () => {
   const handleChange = () => {
     setShowFDV(!showFDV);
   };
-
-  const queryClient = new QueryClient();
 
   return (
     <div className="directory-container">
@@ -75,11 +69,9 @@ const Directory = () => {
             />
           </h3>
         </div>
-          </div>
-          
-      <QueryClientProvider client={queryClient}>
-        <Coins fdvDisp={showFDV} />
-      </QueryClientProvider>
+      </div>
+
+      <Coins fdvDisp={showFDV} />
     </div>
   );
 };

@@ -1,21 +1,10 @@
 import './coins.style.scss';
 import CoinCategories from '../coin-categories/coin-categories.components';
-import { useQuery } from '@tanstack/react-query';
-
-const fetchCoinData = async () => {
-  const res = await fetch(
-    'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=1h%2C24h'
-  );
-  return res.json();
-};
-// console.log(fetchCoinData());
+// import { useQuery } from '@tanstack/react-query';
+import { GetCoins } from '../../Apis/userApis';
 
 const Coins = ({ fdvDisp }) => {
-  const { data, status } = useQuery(
-    ['coins'],
-    fetchCoinData
-  );
-  console.log(data);
+//   GetCoins();
 
   return (
     <div className="coin-container">
