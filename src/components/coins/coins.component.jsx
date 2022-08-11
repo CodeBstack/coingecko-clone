@@ -6,6 +6,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
+import SearchFunc from '../../Apis/userApis';
 
 const fetchCoinData = async (page) => {
   const { data } = await axios.get(
@@ -19,13 +20,9 @@ const Coins = ({ fdvDisp }) => {
   const [page, setPage] = useState(1);
 
   // useQuery hook
-  const { isLoading, isError, error, data } =
-    useQuery(
-      ['coins', page],
-      () => fetchCoinData(page),
-      {
-        keepPreviousData: true,
-      }
+  const { isError, error, data, isFetching } =
+    useQuery(['coins', page], () =>
+      fetchCoinData(page)
     );
 
   // To set the #No of each coin.
@@ -35,7 +32,7 @@ const Coins = ({ fdvDisp }) => {
     return index + ind;
   };
 
-    // handle change on pagination button
+  // handle change on pagination button
   const handleChange = (e) => {
     const numClicked = parseInt(
       e.target.textContent
@@ -47,6 +44,7 @@ const Coins = ({ fdvDisp }) => {
 
   return (
     <div className="coin-container">
+      <SearchFunc />
       <div className="coins-heading">
         <div className="count">
           <p>#</p>
@@ -82,7 +80,7 @@ const Coins = ({ fdvDisp }) => {
         </div>
       </div>
       <div className="coin-lists">
-        {isLoading ? (
+        {isFetching ? (
           <div className="loader-container">
             <Load />
           </div>
@@ -101,6 +99,7 @@ const Coins = ({ fdvDisp }) => {
           })
         )}
       </div>
+
       <div className="page-btn">
         <Stack spacing={1}>
           <Pagination
