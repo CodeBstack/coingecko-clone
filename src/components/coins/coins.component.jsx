@@ -6,7 +6,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
-import SearchFunc from '../../Apis/userApis';
+// import SearchFunc from '../../Apis/userApis';
 
 const fetchCoinData = async (page) => {
   const { data } = await axios.get(
@@ -44,7 +44,7 @@ const Coins = ({ fdvDisp }) => {
 
   return (
     <div className="coin-container">
-      <SearchFunc />
+      {/* <SearchFunc /> */}
       <div className="coins-heading">
         <div className="count">
           <p>#</p>
