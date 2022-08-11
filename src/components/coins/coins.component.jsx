@@ -4,40 +4,46 @@ import Load from '../onLoad/onLoad.component';
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import axios from 'axios';
-// import { GetCoins } from '../../Apis/userApis';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 
-const fetchCoinData = async (page = 0) => {
-  //   const res = await fetch(
-  //       `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=${page}&sparkline=false&price_change_percentage=1h%2C24h%2C7d`
-  //     // `https://api.coingecko.com/api/v3/coins//markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=${page}&sparkline=false&price_change_percentage=1h%2C24h`
-  //     );
-
+const fetchCoinData = async (page) => {
   const { data } = await axios.get(
-    `https://api.coingecko.com/api/v3/coins//markets?vs_currency=usd&order=market_cap_desc&per_page=250&page=${page}&sparkline=false&price_change_percentage=1h%2C24h%2C7d`
+    `https://api.coingecko.com/api/v3/coins//markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=${page}&sparkline=false&price_change_percentage=1h%2C24h%2C7d`
   );
 
   return data;
-
-  //   return res.json();
 };
 
 const Coins = ({ fdvDisp }) => {
-  const [page, setPage] = useState(0);
-  const {
-    isLoading,
-    isError,
-    error,
-    data,
-    isFetching,
-    isPreviousData,
-  } = useQuery(
-    ['coins', page],
-    () => fetchCoinData(page),
-    {
-      keepPreviousData: true,
+  const [page, setPage] = useState(1);
+
+  // useQuery hook
+  const { isLoading, isError, error, data } =
+    useQuery(
+      ['coins', page],
+      () => fetchCoinData(page),
+      {
+        keepPreviousData: true,
+      }
+    );
+
+  // To set the #No of each coin.
+  const coinCount = (ind) => {
+    const index =
+      page * data.length - data.length;
+    return index + ind;
+  };
+
+    // handle change on pagination button
+  const handleChange = (e) => {
+    const numClicked = parseInt(
+      e.target.textContent
+    );
+    if (numClicked > 0) {
+      setPage(numClicked);
     }
-  );
-//   console.log(data);
+  };
 
   return (
     <div className="coin-container">
@@ -75,7 +81,6 @@ const Coins = ({ fdvDisp }) => {
           <h3>Last 7 Days</h3>
         </div>
       </div>
-
       <div className="coin-lists">
         {isLoading ? (
           <div className="loader-container">
@@ -85,42 +90,25 @@ const Coins = ({ fdvDisp }) => {
           <div>Error: {error.message}</div>
         ) : (
           data.map((coin, ind) => {
-            // console.log(ind+1,coin);
             return (
               <CoinCategories
                 key={coin.id}
                 fdvDisplay={fdvDisp}
                 coin={coin}
-                index={ind}
+                index={coinCount(ind)}
               />
             );
           })
         )}
-        <span>Current Page: {page + 1}</span>
-        <button
-          onClick={() =>
-            setPage((old) => Math.max(old - 1, 0))
-          }
-          disabled={page === 0}
-        >
-          Previous Page
-        </button>{' '}
-        <button
-          onClick={() => {
-            if (!isPreviousData && data.hasMore) {
-              setPage((old) => old + 1);
-            }
-          }}
-          // Disable the Next Page button until we know a next page is available
-          disabled={
-            isPreviousData || !data?.hasMore
-          }
-        >
-          Next Page
-        </button>
-        {isFetching ? (
-          <span> Loading...</span>
-        ) : null}{' '}
+      </div>
+      <div className="page-btn">
+        <Stack spacing={1}>
+          <Pagination
+            onChange={handleChange}
+            count={100}
+            shape="rounded"
+          />
+        </Stack>
       </div>
     </div>
   );

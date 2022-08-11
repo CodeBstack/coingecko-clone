@@ -50,4 +50,13 @@
   margin-top: 2rem;
 }
 
+.page-btn {
+  display: flex;
+  justify-content: space-between;
+  margin: 1.5rem 0;
+  align-self: center;
 
+  button:hover {
+    background-color: #f1f8e9;
+  }
+}
