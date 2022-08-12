@@ -5,7 +5,7 @@ import './coin-categories.styles.scss';
 const CoinCategories = ({
   fdvDisplay,
   coin,
-  index,
+ 
 }) => {
   const {
     name,
@@ -18,6 +18,7 @@ const CoinCategories = ({
     price_change_percentage_24h,
     price_change_percentage_7d_in_currency,
     total_volume,
+    market_cap_rank
   } = coin;
 
   const formatNumbers = (num) => {
@@ -32,7 +33,7 @@ const CoinCategories = ({
       <div className="count">
         <p>
           <BsStar />
-          &nbsp;{index + 1}
+          &nbsp;{market_cap_rank}
         </p>
       </div>
       <div className="coin">

@@ -25,13 +25,6 @@ const Coins = ({ fdvDisp }) => {
       fetchCoinData(page)
     );
 
-  // To set the #No of each coin.
-  const coinCount = (ind) => {
-    const index =
-      page * data.length - data.length;
-    return index + ind;
-  };
-
   // handle change on pagination button
   const handleChange = (e) => {
     const numClicked = parseInt(
@@ -87,13 +80,12 @@ const Coins = ({ fdvDisp }) => {
         ) : isError ? (
           <div>Error: {error.message}</div>
         ) : (
-          data.map((coin, ind) => {
+          data.map((coin) => {
             return (
               <CoinCategories
                 key={coin.id}
                 fdvDisplay={fdvDisp}
                 coin={coin}
-                index={coinCount(ind)}
               />
             );
           })
@@ -104,7 +96,7 @@ const Coins = ({ fdvDisp }) => {
         <Stack spacing={1}>
           <Pagination
             onChange={handleChange}
-            count={100}
+            count={50}
             shape="rounded"
           />
         </Stack>
